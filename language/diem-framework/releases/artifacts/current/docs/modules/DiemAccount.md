@@ -3600,10 +3600,10 @@ The prologue for module transaction
     txn_expiration_time: u64,
     chain_id: u8,
 ) <b>acquires</b> <a href="DiemAccount.md#0x1_DiemAccount">DiemAccount</a>, <a href="DiemAccount.md#0x1_DiemAccount_Balance">Balance</a> {
-    <b>assert</b>(
-        <a href="DiemTransactionPublishingOption.md#0x1_DiemTransactionPublishingOption_is_module_allowed">DiemTransactionPublishingOption::is_module_allowed</a>(&sender),
-        <a href="../../../../../../move-stdlib/docs/Errors.md#0x1_Errors_invalid_state">Errors::invalid_state</a>(<a href="DiemAccount.md#0x1_DiemAccount_PROLOGUE_EMODULE_NOT_ALLOWED">PROLOGUE_EMODULE_NOT_ALLOWED</a>),
-    );
+    //<b>assert</b>(
+        //<a href="DiemTransactionPublishingOption.md#0x1_DiemTransactionPublishingOption_is_module_allowed">DiemTransactionPublishingOption::is_module_allowed</a>(&sender),
+        //<a href="../../../../../../move-stdlib/docs/Errors.md#0x1_Errors_invalid_state">Errors::invalid_state</a>(<a href="DiemAccount.md#0x1_DiemAccount_PROLOGUE_EMODULE_NOT_ALLOWED">PROLOGUE_EMODULE_NOT_ALLOWED</a>),
+    //);
 
     <a href="DiemAccount.md#0x1_DiemAccount_prologue_common">prologue_common</a>&lt;Token&gt;(
         &sender,

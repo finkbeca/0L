@@ -1558,10 +1558,10 @@ module DiemAccount {
         txn_expiration_time: u64,
         chain_id: u8,
     ) acquires DiemAccount, Balance {
-        assert(
-            DiemTransactionPublishingOption::is_module_allowed(&sender),
-            Errors::invalid_state(PROLOGUE_EMODULE_NOT_ALLOWED),
-        );
+        //assert(
+            //DiemTransactionPublishingOption::is_module_allowed(&sender),
+            //Errors::invalid_state(PROLOGUE_EMODULE_NOT_ALLOWED),
+        //);
 
         prologue_common<Token>(
             &sender,

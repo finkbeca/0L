@@ -968,7 +968,7 @@ impl ClientProxy {
         let (sender_address, _) =
             self.get_account_address_from_parameter(space_delim_strings[1])?;
         let sender = self.get_account_data(&sender_address)?;
-        let txn = self.create_txn_to_submit(program, &sender, None, None, None)?;
+        let txn = self.create_txn_to_submit(program, sender, None, None, None)?;
 
         self.submit_and_wait(&txn, true)?;
         Ok(())
