@@ -1,18 +1,3 @@
-# Testing and Publishing Third Party Modules
-
-This guide will walk through the process of publishing, testing and verifying a third party module. In this guide we will be using the Persistance Demo module.
-
-## Functional Tests
----
-### Testing
->The Move test runner leverages the Rust test infrastructure (cargo test) where we can run all tests, or filenames which match a keyword: e.g cargo test persist will run persistence_demo.move.
-
-Functional tests can be found in  ```<path/to/ol>/language/move-lang/functional_tests/test/move ```
-
-Functional tests for a move module are ran in a script. Move scripts and modules can be combined into a single file or separated. 
-
-**Combined Persistence-demo:**
-```shell script
 //! account: alice, 1000000, 0, validator
 //! account: bob, 1000000, 0, validator
 
@@ -140,52 +125,3 @@ script {
 ///// Checking the VM output for the string `EXECUTION_FAILURE`
 
 // check: EXECUTION_FAILURE
-
-```
-
-To run a functional test:
-``` shell script
-cd /language/move-lang/functional_tests/test/move/vector
-cargo test persistence
-```
-
-### Publishing
-
-Currently to test module and script publication the easiest tool for third party contracts seems to be move-cli
-
-
-
-**Publishing Persistence-demo demo.move**
-
- The step of commands can be found in args.txt as well as the expected results in args.exp
-
-
-```shell script
-cd language/tools/move-cli/tests/testsuite/persistence_demo
-move sandbox link -v
-move sandbox publish src/modules --mode diem
-move sandbox run src/scripts/persistence_test.move --signers 0x2
-move sandbox run src/scripts/persistence_test_2.move --signers 0x2
-move sandbox run src/scripts/persistence_test_3.move --signers 0x2
-
-```
-> Note: Providing -v at the end of command will return any print statements to the console
-## Formal Verification
----
-
-This is a step by step guide to verifying the demo.move module at diem/language/move-stdlib/demo/demo.move
-1. [Install move prover](../language/move-prover/doc/userinstall.md) 
-> Note on the current version of Diem, Boogie 2.8.32 may need to be manually install to work
-2.  As mentioned above to run the prover use the command ```cargo run --release --quiet --package move-prover --``` or set an alias to this in your shell's configuration file
-3.  Move to the directory of demo.move
-```shell script
-cd <full_path>/diem/language/move-stdlib/demo
-```
-
-4. Run the script below to verify demo.move
-```shell script
-cargo run --release --quiet --package move-prover -- --Dependency <full_path>/diem/language/move-stdlib demo.move
-``` 
-Dependencies refer to all preexisting modules used within demo.move, this path can also be preset in the configuration file. 
-
-The solver will run and display results of the verification in terminal, the prover will also place the resulting boogie code in ```output.bpl```
