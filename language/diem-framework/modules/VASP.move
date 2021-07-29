@@ -55,7 +55,7 @@ module VASP {
         include DiemTimestamp::AbortsIfNotOperating;
         include Roles::AbortsIfNotTreasuryCompliance{account: tc_account};
         include Roles::AbortsIfNotParentVasp{account: vasp};
-        let vasp_addr = Signer::spec_address_of(vasp);
+        let vasp_addr = Signer::(vasp);
         aborts_if is_vasp(vasp_addr) with Errors::ALREADY_PUBLISHED;
         include PublishParentVASPEnsures{vasp_addr: vasp_addr};
     }

@@ -1,0 +1,7 @@
+Command `sandbox link -v`:
+Checking Move files...
+Command `sandbox publish src/modules --mode diem`:
+Command `sandbox run src/scripts/persistence_test.move --signers 0x2`:
+Command `sandbox run src/scripts/persistence_test_2.move --signers 0x2`:
+Execution aborted with code 4 in transaction script
+Command `sandbox run src/scripts/persistence_test_3.move --signers 0x2`:
